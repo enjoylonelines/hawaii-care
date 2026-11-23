@@ -1,4 +1,4 @@
-const origins=(Deno.env.get('INQUIRY_ALLOWED_ORIGINS')||'http://localhost:4178,http://127.0.0.1:4178').split(',');
+const origins=(Deno.env.get('INQUIRY_ALLOWED_ORIGINS')||'http://localhost:4178,http://127.0.0.1:4178,https://hawaii-care.vercel.app').split(',');
 Deno.serve(async(req:Request)=>{
  const origin=req.headers.get('origin')||'';
  const headers={'Content-Type':'application/json','Access-Control-Allow-Origin':origins.includes(origin)?origin:origins[0],'Access-Control-Allow-Headers':'authorization,apikey,content-type','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin','Cache-Control':'no-store'};

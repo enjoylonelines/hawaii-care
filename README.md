@@ -1,4 +1,5 @@
 # 하와이재가방문요양센터
+공개 홈페이지: https://hawaii-care.vercel.app · 관리자: https://hawaii-care.vercel.app/admin/login
 포천 지역 방문요양 안내·돌봄 상담·요양보호사 구직 문의 웹사이트.
 
 ## 실행
@@ -60,4 +61,4 @@ node scripts/deploy-vercel.mjs
 임시 claim 배포는 영구 SEO 주소로 사용하지 않는다.
 배포 후 확정된 origin을 Edge Function INQUIRY_ALLOWED_ORIGINS에 추가하거나 함수의 허용 목록을 갱신하고, 실제 공개 URL에서 문의 전송을 다시 검증해야 한다.
 공개 도메인이 확정되면 canonical·robots·sitemap을 재검사하고 네이버·Google·Bing의 소유권 확인/사이트맵 제출을 진행한다.
-브라우저 시각·로그인 클릭 검증은 아직 미실행.
+공개 데스크톱 첫 화면과 FAQ·문의 폼 제출 및 DB 저장을 브라우저에서 확인했다. 관리자 로그인 화면은 렌더링 확인했으며 로그인 클릭·모바일 검증은 아직 미실행.

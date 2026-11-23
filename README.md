@@ -23,8 +23,8 @@ src/landing.html은 고정 콘텐츠, src/App.tsx는 대화형 컴포넌트, src
 ## 문의 접수
 hobeom 조직, 서울 리전 Supabase 프로젝트: hawaii-care (jmcucqvwizayidzlllsg).
 폼 → submit-inquiry Edge Function → PostgreSQL inquiries 테이블.
-별도 관리자 화면은 아직 없으며 권한 있는 운영자는 Supabase 대시보드 Table Editor에서 확인한다.
-공개·일반 로그인 사용자의 조회·수정·직접 삽입 권한을 차단했다. RLS에 공개 정책이 없는 것은 의도한 기본 거부 구성이다.
+관리자 로그인은 /admin/login, 문의 관리는 /admin이다. /admin/preview는 예시 데이터만 표시하며 DB를 조회하지 않는다. Supabase Auth 이메일/비밀번호 로그인 후 care_admins에 등록된 user_id만 조회·상태 변경할 수 있다. 회원가입 UI는 제공하지 않는다. 실제 관리자 이메일을 확정한 뒤 Auth 사용자 생성 및 care_admins 등록이 필요하다. 로그인 계정은 아직 만들지 않았다.
+공개·비관리자 로그인 사용자의 조회·수정·직접 삽입을 차단했다. 관리자는 문의 상세 조회 및 status만 변경할 수 있고 연락처·원본 문의를 수정하거나 관리자 권한을 스스로 부여할 수 없다. DB 트랜잭션으로 관리자·비관리자 접근 및 컬럼 권한을 검증하고 테스트 사용자를 롤백했다. 스키마 변경 참조는 supabase/admin-schema.sql에 기록했다.
 서비스 키는 Edge Function 환경에만 있고 공개 저장소·브라우저에 포함하지 않는다.
 서버 입력 검증, 개인정보 수집 동의, 허니팟, IP 해시별 시간당 5건 제한을 적용했다.
 원본 IP는 저장하지 않는다. 문의는 접수 후 90일 만료되며 매일 한국시간 03:15에 만료 데이터를 삭제한다.

@@ -1,0 +1,10 @@
+create table public.care_admins(user_id uuid primary key references auth.users(id) on delete cascade,created_at timestamptz not null default now());
+alter table public.care_admins enable row level security;
+revoke all on public.care_admins from anon,authenticated;
+grant select on public.care_admins to authenticated;
+grant all on public.care_admins to service_role;
+create policy admin_self on public.care_admins for select to authenticated using(user_id=(select auth.uid()));
+grant select(id,kind,name,phone,area,condition,status,created_at,consent_at,expires_at) on public.inquiries to authenticated;
+grant update(status) on public.inquiries to authenticated;
+create policy admins_read_inquiries on public.inquiries for select to authenticated using(exists(select 1 from public.care_admins where user_id=(select auth.uid())));
+create policy admins_update_inquiries on public.inquiries for update to authenticated using(exists(select 1 from public.care_admins where user_id=(select auth.uid()))) with check(exists(select 1 from public.care_admins where user_id=(select auth.uid())));

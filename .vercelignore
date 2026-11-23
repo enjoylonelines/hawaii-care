@@ -1,0 +1,7 @@
+.env*
+!.env.example
+.admin-bootstrap.mjs
+.next/
+node_modules/
+docs/
+supabase/

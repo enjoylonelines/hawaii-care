@@ -1,3 +1,4 @@
+'use client';
 import {useEffect,useState,type FormEvent} from 'react';
 import {supabase} from './lib/supabase';
 import {Button} from './components/ui/button';
@@ -16,8 +17,7 @@ const demoRows:Inquiry[]=[
 {id:'demo-2',kind:'job',name:'이○○ (예시)',phone:'010-0000-0000',area:'포천시',condition:'자격증이 있어요',status:'contacted',created_at:'2026-11-23T06:30:00Z'},
 {id:'demo-3',kind:'care',name:'박○○ (예시)',phone:'010-0000-0000',area:'선단동',condition:'신청 전이에요',status:'closed',created_at:'2026-11-22T07:15:00Z'}
 ];
-export default function Admin(){
- const preview=window.location.pathname==='/admin/preview';
+export default function Admin({preview=false}:{preview?:boolean}){
  const [auth,setAuth]=useState<'loading'|'login'|'allowed'|'denied'>(preview?'allowed':'loading');
  const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false);
  const [rows,setRows]=useState<Inquiry[]>(preview?demoRows:[]),[selected,setSelected]=useState<Inquiry|null>(null);

@@ -1,8 +1,9 @@
+'use client';
 import {useState,type FormEvent} from 'react';
 import {submitInquiry} from '@/lib/inquiries';
 import {Accessibility,House,MessagesSquare} from 'lucide-react';
 import parse,{Element,domToReact,type HTMLReactParserOptions,type DOMNode} from 'html-react-parser';
-import landing from './landing.html?raw';
+import landing from './content/landing';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {Label} from '@/components/ui/label';
@@ -41,7 +42,7 @@ export default function App(){
  {done&&<div className="feedback" role="status">상담 신청이 접수되었습니다. 센터에서 확인 후 연락드리겠습니다.</div>}
  {error&&<div className="feedback error" role="alert">{error}</div>}
  </form>;
- if(node.name==='section'&&node.attribs.class==='faq')return <section className="faq"><div className="wrap section"><div className="eyebrow">자주 묻는 질문</div><h2>처음 알아볼 때 궁금한 것들.</h2><Accordion type="multiple">{faqs.map((f,i)=><AccordionItem className="faq-item" key={f.q} value={String(i)}><AccordionTrigger className="faq-trigger">{f.q}</AccordionTrigger><AccordionContent className="faq-content"><p>{f.a}</p></AccordionContent></AccordionItem>)}</Accordion></div></section>;
+ if(node.name==='section'&&node.attribs.class==='faq')return <section className="faq"><div className="wrap section"><div className="eyebrow">자주 묻는 질문</div><h2>처음 알아볼 때 궁금한 것들.</h2><Accordion type="multiple">{faqs.map((f,i)=><AccordionItem className="faq-item" key={f.q} value={String(i)}><AccordionTrigger className="faq-trigger">{f.q}</AccordionTrigger><AccordionContent forceMount className="faq-content"><p>{f.a}</p></AccordionContent></AccordionItem>)}</Accordion></div></section>;
  if(node.attribs.class==='icon'){const icon=node.children[0];const text=icon&&'data' in icon?icon.data:'';const Icon=text==='♧'?Accessibility:text==='⌂'?House:MessagesSquare;return <div className="icon" aria-hidden="true"><Icon size={28} strokeWidth={1.6}/></div>}
  if(node.attribs.id==='job-link')return <Button className="btn light" onClick={()=>{changeKind('job');document.getElementById('contact')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});document.getElementById('name')?.focus({preventScroll:true})}}>요양보호사 구직 문의</Button>;
  if(node.name==='a'&&node.attribs.class?.split(' ').includes('btn'))return <Button asChild className={node.attribs.class}><a href={node.attribs.href} target={node.attribs.target} rel={node.attribs.rel}>{domToReact(node.children as DOMNode[],options)}</a></Button>;

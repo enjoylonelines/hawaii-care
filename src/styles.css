@@ -41,3 +41,16 @@ button{border-style:solid}
 .form button:disabled{opacity:.6;cursor:wait}
 .feedback.error{color:#9b3428;background:#fff1ee}
 @media(max-width:600px){.faq-trigger{font-size:17px}}
+
+[data-slot="accordion-content"][data-state="closed"]{display:none}
+.related-guides{display:flex;gap:24px;flex-wrap:wrap;padding-top:30px}
+.related-guides a,.guide-body a{color:#315e49;text-decoration:underline;text-underline-offset:4px}
+.guide{max-width:900px}
+.guide>nav{font-size:14px;color:var(--muted);margin-bottom:35px}
+.guide h1{font-size:42px;letter-spacing:-1.7px}
+.guide h2{font-size:26px;margin-top:40px}
+.guide-body{line-height:1.95;margin:35px 0 55px}
+.guide-body ul,.guide-body ol{padding-left:25px}
+.guide-body li{margin:10px 0}
+.guide .contact-info .btn{margin:8px 10px 0 0}
+@media(max-width:600px){.guide h1{font-size:32px}.guide h2{font-size:23px}.related-guides{gap:12px;font-size:15px}}

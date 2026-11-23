@@ -36,7 +36,7 @@ export default function App(){
  <div><Label htmlFor="condition">{kind==='job'?'요양보호사 자격':'장기요양등급'}</Label>
  <Select value={condition} onValueChange={setCondition}><SelectTrigger id="condition"><SelectValue/></SelectTrigger><SelectContent position="popper" sideOffset={6}>{(kind==='job'?['자격증이 있어요','취득 예정이에요','상담이 필요해요']:['잘 모르겠어요','등급이 있어요','신청 전이에요','신청 중이에요','본인 또는 가족이 아니에요']).map(v=><SelectItem value={v} key={v}>{v}</SelectItem>)}</SelectContent></Select></div></div>
  <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{display:'none'}}/>
- <label className="consent"><input name="consent" type="checkbox" required/>상담 연락을 위한 이름·연락처·지역·문의 내용 수집에 동의합니다. 상담 종료 후 90일 이내 삭제합니다.</label>
+ <label className="consent"><input name="consent" type="checkbox" required/>상담 연락을 위한 이름·연락처·지역·문의 내용 수집에 동의합니다. 접수일로부터 90일간 보관 후 삭제합니다.</label>
  <Button className="btn" type="submit" disabled={pending}>{pending?'접수 중…':'상담 신청하기'}</Button>
  {done&&<div className="feedback" role="status">상담 신청이 접수되었습니다. 센터에서 확인 후 연락드리겠습니다.</div>}
  {error&&<div className="feedback error" role="alert">{error}</div>}
